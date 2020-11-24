@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Report Generation</title>
+<title>View Policy</title>
 <style>
 body{
 background-color:lightblue;}
@@ -14,14 +14,12 @@ background-color:lightblue;}
 <body>
 <em><span style="float:right">Logged in as <%=session.getAttribute("role") %></span></em>
 <div align="center">
-<h2>Generate Report</h2>
-<form action="Report_Generation" method="get">
+<form action="ViewPolicy" method="get">
 <table>
  <tr><td>Account number</td><td><input type="text" name="account_number" pattern="[0-9]{10}" title="Must Contain 10 digits" required></td></tr>
- <tr><td><input type="submit" value="view"></td>
+ <tr><td><input type="submit" value="view policy"></td>
  <td><input type="button" value="Back" onclick="location.href='HomePage';"></td></tr>
  </table>
- </form>
- </div>
+ </form></div>
 </body>
 </html>

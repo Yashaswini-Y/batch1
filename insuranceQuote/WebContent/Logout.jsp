@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>LogOut</title>
 </head>
 <body>
-<h4>Logged out successfully</h4>
+<%session.invalidate(); %>
+<%response.sendRedirect("Login.jsp"); %>
 </body>
 </html>

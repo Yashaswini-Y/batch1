@@ -7,7 +7,11 @@ public class Policy_Details {
 	private String answer;
 	public Policy_Details() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+	public Policy_Details(String question_Id, String answer) {
+		super();
+		this.question_Id = question_Id;
+		this.answer = answer;
 	}
 	public Policy_Details(int policy_Number, String question_Id, String answer) {
 		super();

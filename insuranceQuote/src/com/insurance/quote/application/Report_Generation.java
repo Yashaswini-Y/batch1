@@ -1,8 +1,6 @@
 package com.insurance.quote.application;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.insurance.quote.entity.Accounts;
-import com.insurance.quote.service.InsuranceService;
-import com.insurance.quote.service.InsuranceServiceImpl;
+import com.insurance.quote.service.PolicyCreationServiceImpl;
+import com.insurance.quote.service.ReportGenerationServiceImpl;
 
 /**
  * Servlet implementation class ReportGen
@@ -26,29 +24,43 @@ public class Report_Generation extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out=response.getWriter();
-		String account_number=request.getParameter("account_number");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response){
+        try {
+		String account_number=null;
+		account_number=request.getParameter("account_number");
 		RequestDispatcher rd=null;
-		if(account_number!=null && account_number.length()>=10) {
-			
-			InsuranceService service=new InsuranceServiceImpl();
-			List<Accounts> acc=service.getDetails(Long.parseLong(account_number));
-			System.out.println(acc.get(0).getInsured_Name());
+			long accNum=Long.parseLong(account_number);
+			ReportGenerationServiceImpl service=new ReportGenerationServiceImpl();
+			PolicyCreationServiceImpl details=new PolicyCreationServiceImpl();
+			List<Accounts> acc=details.getDetails(accNum);
+				if(acc.size()==0) {
+					request.setAttribute("Message","Account Not Found");
+					rd=request.getRequestDispatcher("MessageInfo.jsp");
+					}
+				else {
 			request.setAttribute("Account", acc);
-			rd=request.getRequestDispatcher("/Report.jsp");
-			rd.forward(request, response);
+			List<String> ques=service.getQues(accNum);
+			List<String> ans=service.getAns(accNum);
+			double premium=service.getFinalPremium(accNum);
+			request.setAttribute("Ques", ques);
+			request.setAttribute("Ans",ans);
+			request.setAttribute("premium",premium);
+			rd=request.getRequestDispatcher("/Report_Generation_Results.jsp");
+			}
+		rd.include(request, response);
 		}
-		else if(account_number==null) 
-			out.println("*Account number must not be empty."
-					+ " Please fill in the account number");
-		else if(account_number.length()<10){
-			out.println("Account number should be 10 digits."+" Please enter the correct account number.");
+        catch(ServletException | IOException ex) {
+			System.out.println("Error occured in Report Generation");
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
+		RequestDispatcher rd;
+		rd=request.getRequestDispatcher("HomePage");
+		try {
+			rd.forward(request, response);
+		} catch (ServletException | IOException e) {
+			System.out.println("Error occured in Report Generation");
+		}
 	}
 
 }

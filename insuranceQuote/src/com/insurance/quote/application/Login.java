@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.insurance.quote.entity.User_Role;
 import com.insurance.quote.service.InsuranceServiceImpl;
@@ -23,8 +24,8 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
 		PrintWriter out=response.getWriter();
 		String user=request.getParameter("userName");
 		String pass=request.getParameter("password");
@@ -33,25 +34,34 @@ public class Login extends HttpServlet {
 		details=service.getUser(user);
 		String existUser=details.getUser_Name();
 		String existPass=details.getPassword();
-		
-		RequestDispatcher rd;
+		String role=details.getRole_Code();
+		RequestDispatcher rd=null;
 		if(user.equals(existUser) ) {
 			if(pass.equals(existPass)) {
-			    rd=request.getRequestDispatcher("Successful_Login");
-			    rd.forward(request, response);
+				HttpSession session=request.getSession(true);
+				session.setAttribute("user", user);
+				session.setAttribute("role", role);
+			    rd=request.getRequestDispatcher("HomePage");  
 			}
-			else
-				out.println("Incorrect Password");
+			else {
+				out.println("Invalid Password!");
+				rd=request.getRequestDispatcher("Login.jsp");
+				}
 		}
-		else
-			out.println("User details not found");
+		else {
+			out.println("User details not found!");
+			}
+		rd.include(request, response);}
+		catch( ServletException | IOException ex) {
+			System.out.println("Error occured in Login Page");
+			
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

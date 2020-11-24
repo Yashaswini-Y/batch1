@@ -7,7 +7,6 @@ public class Bussiness_Segment {
 
 	public Bussiness_Segment() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Bussiness_Segment(String bus_Seg_Id, int bus_seg_seq, String bus_Seg_Name) {

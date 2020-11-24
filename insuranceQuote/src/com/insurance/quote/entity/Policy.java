@@ -3,34 +3,39 @@ package com.insurance.quote.entity;
 
 public class Policy {
 	
-	private int Policy_Number;
-	private int Policy_Premium;
-	private long Account_Number;
+	private int policy_Number;
+	private double policy_Premium;
+	private long account_Number;
 	public Policy() {
 		
 	}
-	public Policy(int policy_Number, int policy_Premium, long account_Number) {
-		this.Policy_Number = policy_Number;
-		this.Policy_Premium = policy_Premium;
-		this.Account_Number = account_Number;
+	public Policy(double policy_Premium, long account_Number) {
+		super();
+		this.policy_Premium = policy_Premium;
+		this.account_Number = account_Number;
+	}
+	public Policy(int policy_Number, double policy_Premium, long account_Number) {
+		this.policy_Number = policy_Number;
+		this.policy_Premium = policy_Premium;
+		this.account_Number = account_Number;
 	}
 	public int getPolicy_Number() {
-		return Policy_Number;
+		return policy_Number;
 	}
 	public void setPolicy_Number(int policy_Number) {
-		Policy_Number = policy_Number;
+		this.policy_Number = policy_Number;
 	}
-	public int getPolicy_Premium() {
-		return Policy_Premium;
+	public double getPolicy_Premium() {
+		return policy_Premium;
 	}
-	public void setPolicy_Premium(int policy_Premium) {
-		Policy_Premium = policy_Premium;
+	public void setPolicy_Premium(double policy_Premium) {
+		this.policy_Premium = policy_Premium;
 	}
 	public long getAccount_Number() {
-		return Account_Number;
+		return account_Number;
 	}
 	public void setAccount_Number(long account_Number) {
-		Account_Number = account_Number;
+		this.account_Number = account_Number;
 	}
 
 }

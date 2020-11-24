@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.insurance.quote.entity.User_Role;
-import com.insurance.quote.service.InsuranceServiceImpl;
+import com.insurance.quote.service.UserRoleServiceImpl;
 
 /**
  * Servlet implementation class Profile_Creation
@@ -23,38 +23,39 @@ public class Profile_Creation extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
 		PrintWriter out = response.getWriter();
-		InsuranceServiceImpl service=new InsuranceServiceImpl();
+		UserRoleServiceImpl service=new UserRoleServiceImpl();
 		String user_Name = request.getParameter("uname");
 		String password = request.getParameter("psw");
 		String roleCode=request.getParameter("Role_Code");
-		System.out.println(user_Name+""+password+""+roleCode);
 		if(user_Name!=null && password!=null && roleCode!=null) {
 			User_Role profile=new User_Role(user_Name,password,roleCode);
 			int rows=service.CreateProfile(profile);
 			if(rows>0)
-			out.println("Profile Created Successfully");
+				request.setAttribute("Message", "Profile Created Successfully");
 			else 
-				out.println("Profile creation failed");
-			RequestDispatcher rd=request.getRequestDispatcher("/SuccessFul_Login.jsp");
+				request.setAttribute("Message","Profile creation failed");
+			RequestDispatcher rd=request.getRequestDispatcher("MessageInfo.jsp");
 			rd.forward(request, response);
-			
 		}
-		else 
-			out.println("Unable to create a profile");
-			RequestDispatcher rd=request.getRequestDispatcher("/SuccessFul_Login.jsp");
-		rd.forward(request, response);
-		
+		else {
+			out.println("Invalid Login");
+		RequestDispatcher rd1=request.getRequestDispatcher("/Login.jsp");
+		rd1.forward(request, response);}
+		}
+		catch(ServletException | IOException ex) {
+			System.out.println("Error occured in Profile Creation");
+		}
+			
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		doGet(request,response);
 	}
 
 }

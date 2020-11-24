@@ -3,36 +3,36 @@ package com.insurance.quote.entity;
 
 public class User_Role {
 	
-	private String User_Name;
-	private String Password;
-	private String Role_Code;
+	private String user_Name;
+	private String password;
+	private String role_Code;
 public User_Role() {
 	
 }
-public User_Role(String User_Name, String Password, String Role_Code)
+public User_Role(String user_Name, String password, String role_Code)
 {
 	super();
-	this.User_Name = User_Name;
-	this.Password = Password;
-	this.Role_Code = Role_Code;
+	this.user_Name = user_Name;
+	this.password = password;
+	this.role_Code = role_Code;
 }
 public String getUser_Name() {
-	return User_Name;
+	return user_Name;
 }
 public void setUser_Name(String user_Name) {
-	User_Name = user_Name;
+	this.user_Name = user_Name;
 }
 public String getPassword() {
-	return Password;
+	return password;
 }
 public void setPassword(String password) {
-	Password = password;
+	this.password = password;
 }
 public String getRole_Code() {
-	return Role_Code;
+	return role_Code;
 }
 public void setRole_Code(String role_Code) {
-	Role_Code = role_Code;
+	this.role_Code = role_Code;
 }
 
 }

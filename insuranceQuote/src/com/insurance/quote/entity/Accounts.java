@@ -3,76 +3,76 @@ package com.insurance.quote.entity;
 
 public class Accounts {
 	
-	private int Account_Number;
-	private String Insured_Name;
-	private String Insured_Street;
-	private String Insured_City;
-	private String Insured_State;
-	private int Insured_Zip;
-	private String Business_Segment;
-	private String User_Name;
+	private long account_Number;
+	private String insured_Name;
+	private String insured_Street;
+	private String insured_City;
+	private String insured_State;
+	private int insured_Zip;
+	private String business_Segment;
+	private String user_Name;
 public Accounts() {
 	
 }
-public Accounts(int Account_Number, String Insured_Name, String Insured_Street, String Insured_City, String Insured_State,int Insured_Zip,String Business_Segment, String User_Name )
+public Accounts(long account_Number, String insured_Name, String insured_Street, String insured_City, String insured_State,int insured_Zip,String business_Segment, String user_Name )
 {
 	super();
-	this.Account_Number = Account_Number;
-	this.Insured_Name = Insured_Name;
-	this.Insured_Street = Insured_Street;
-	this.Insured_City = Insured_City;
-	this.Insured_State = Insured_State;
-	this.Insured_Zip = Insured_Zip;
-	this.Business_Segment = Business_Segment;
-	this.User_Name = User_Name;
+	this.account_Number = account_Number;
+	this.insured_Name = insured_Name;
+	this.insured_Street = insured_Street;
+	this.insured_City = insured_City;
+	this.insured_State = insured_State;
+	this.insured_Zip = insured_Zip;
+	this.business_Segment = business_Segment;
+	this.user_Name = user_Name;
 }
-public int getAccount_Number() {
-	return Account_Number;
+public long getAccount_Number() {
+	return account_Number;
 }
-public void setAccount_Number(int account_Number) {
-	Account_Number = account_Number;
+public void setAccount_Number(long account_Number) {
+	this.account_Number = account_Number;
 }
 public String getInsured_Name() {
-	return Insured_Name;
+	return insured_Name;
 }
 public void setInsured_Name(String insured_Name) {
-	Insured_Name = insured_Name;
+	this.insured_Name = insured_Name;
 }
 public String getInsured_Street() {
-	return Insured_Street;
+	return insured_Street;
 }
 public void setInsured_Street(String insured_Street) {
-	Insured_Street = insured_Street;
+	this.insured_Street = insured_Street;
 }
 public String getInsured_City() {
-	return Insured_City;
+	return insured_City;
 }
 public void setInsured_City(String insured_City) {
-	Insured_City = insured_City;
+	this.insured_City = insured_City;
 }
 public String getInsured_State() {
-	return Insured_State;
+	return insured_State;
 }
 public void setInsured_State(String insured_State) {
-	Insured_State = insured_State;
+	this.insured_State = insured_State;
 }
 public int getInsured_Zip() {
-	return Insured_Zip;
+	return insured_Zip;
 }
 public void setInsured_Zip(int insured_Zip) {
-	Insured_Zip = insured_Zip;
+	this.insured_Zip = insured_Zip;
 }
 public String getBusiness_Segment() {
-	return Business_Segment;
+	return business_Segment;
 }
 public void setBusiness_Segment(String business_Segment) {
-	Business_Segment = business_Segment;
+	this.business_Segment = business_Segment;
 }
 public String getUser_Name() {
-	return User_Name;
+	return user_Name;
 }
 public void setUser_Name(String user_Name) {
-	User_Name = user_Name;
+	this.user_Name = user_Name;
 }
 
 }
